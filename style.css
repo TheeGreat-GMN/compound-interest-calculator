@@ -1,0 +1,547 @@
+/* =========================
+   1. GLOBAL SETTINGS & THEMES
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: #315efb;
+    --secondary: #19a879;
+    --dark: #101a30;
+    --light: #f4f7fc;
+    --white: #ffffff;
+    --text: #172033;
+    --muted: #68738a;
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #d8dfeb;
+    --stat-border: #e5eaf2;
+}
+
+[data-theme="dark"] {
+    --primary: #4d7cff;
+    --secondary: #22c55e;
+    --dark: #070d1a;
+    --light: #0b111e;
+    --white: #152033;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --card-bg: #131d31;
+    --input-bg: #1a263f;
+    --input-border: #2a3958;
+    --stat-border: #2a3958;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.5;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* =========================
+   2. NAVIGATION BAR
+========================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 7%;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    width: 24px;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--text);
+    border-radius: 2px;
+}
+
+/* =========================
+   3. HERO SECTION
+========================= */
+.hero {
+    padding: 40px 7%;
+    background: linear-gradient(120deg, #101a30, #1c3768);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.tagline {
+    color: #63d6ae;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.15;
+    margin: 10px 0;
+}
+
+.hero h1 span {
+    color: #63d6ae;
+}
+
+.hero p {
+    color: #d0d9e9;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.hero-button {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: var(--primary);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Hero Graph Card */
+.hero-card {
+    width: 320px;
+    max-width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 20px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: white;
+}
+
+.card-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.hero-card p {
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.hero-card h2 {
+    margin: 6px 0;
+    font-size: 20px;
+}
+
+.growth-number {
+    color: #63d6ae;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.growth-bars {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.growth-bars div {
+    width: 28px;
+    background: linear-gradient(to top, #315efb, #63d6ae);
+    border-radius: 4px 4px 0 0;
+}
+
+/* =========================
+   4. FEATURES SECTION
+========================= */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 30px 7%;
+}
+
+.feature {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.03);
+}
+
+.feature span {
+    font-size: 28px;
+}
+
+.feature h3 {
+    margin: 8px 0 4px;
+    font-size: 16px;
+}
+
+.feature p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================
+   5. CALCULATOR SECTION & TABS
+========================= */
+.calculator-section {
+    padding: 20px 7% 40px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.section-heading span {
+    color: var(--primary);
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 11px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    margin: 5px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.mode-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 9px 18px;
+    border: 1px solid var(--input-border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 20px;
+}
+
+/* Calculator Cards */
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Input Fields */
+.field {
+    margin-bottom: 12px;
+}
+
+.field-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.field-checkbox input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    font-size: 14px;
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(49,94,251,0.1);
+}
+
+.comparison-box {
+    background: rgba(49, 94, 251, 0.04);
+    border: 1px dashed var(--primary);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.comparison-box h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--primary);
+}
+
+/* Calculate Button */
+.card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: var(--primary);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.card button:hover {
+    background: #2449d8;
+}
+
+/* Results */
+.result {
+    background: linear-gradient(135deg, #315efb, #7485ff);
+    padding: 16px 20px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.result h3 {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.result h1 {
+    font-size: 26px;
+    margin-top: 5px;
+    overflow-wrap: anywhere;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.stat {
+    padding: 12px;
+    border: 1px solid var(--stat-border);
+    border-radius: 8px;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stat h3 {
+    margin-top: 4px;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* Growth Chart */
+canvas {
+    width: 100%;
+    height: 190px !important;
+    margin-top: 5px;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* =========================
+   6. FOOTER
+========================= */
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+}
+
+footer h2 {
+    color: #63d6ae;
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+
+footer p {
+    color: #b9c5d9;
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+/* =========================
+   7. MOBILE RESPONSIVENESS
+========================= */
+@media (max-width: 850px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+        gap: 15px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 5%;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        padding: 20px 5%;
+    }
+
+    .calculator-section {
+        padding: 15px 5% 30px 5%;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}

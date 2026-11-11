@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowWise | Advanced Financial Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<nav class="navbar">
+    <div class="logo">
+        <span>Grow</span>Wise.
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" onclick="closeMenu()">Home</a></li>
+        <li><a href="#calculator" onclick="closeMenu()">Calculator</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">🌙</button>
+        <button class="nav-button" onclick="location.href='#calculator'">
+            Calculate Now
+        </button>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HOMEPAGE HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tagline">SMARTER MONEY. BETTER FUTURE.</span>
+        <h1>
+            Make Your Money
+            <span>Work For You.</span>
+        </h1>
+        <p>
+            Discover the power of compound interest. Plan wealth, 
+            adjust for inflation, compare scenarios, and build your future.
+        </p>
+        <a href="#calculator" class="hero-button">
+            Start Calculating →
+        </a>
+    </div>
+
+    <div class="hero-card">
+        <div class="card-icon">📈</div>
+        <p>THE POWER OF COMPOUNDING</p>
+        <h2>Grow Your Wealth</h2>
+        <div class="growth-number">+ Interest</div>
+        <div class="growth-bars">
+            <div style="height:30%"></div>
+            <div style="height:45%"></div>
+            <div style="height:60%"></div>
+            <div style="height:75%"></div>
+            <div style="height:100%"></div>
+        </div>
+        <small>Time + Consistency = Growth</small>
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features" id="about">
+    <div class="feature">
+        <span>💰</span>
+        <h3>Goal & Compound Calc</h3>
+        <p>Calculate forward growth or find out what it takes to hit your financial goal.</p>
+    </div>
+    <div class="feature">
+        <span>📊</span>
+        <h3>Scenario Comparison</h3>
+        <p>Compare two different investment plans side-by-side.</p>
+    </div>
+    <div class="feature">
+        <span>🎯</span>
+        <h3>Inflation & Export</h3>
+        <p>Adjust for real purchasing power and analyze your growth metrics.</p>
+    </div>
+</section>
+
+<!-- CALCULATOR SECTION -->
+<section class="calculator-section" id="calculator">
+    <div class="section-heading">
+        <span>ADVANCED FINANCIAL SUITE</span>
+        <h2>Investment & Goal Calculator</h2>
+        <p>Choose your calculation mode and customize your parameters.</p>
+    </div>
+
+    <!-- MODE TABS -->
+    <div class="mode-tabs">
+        <button class="tab-btn active" id="tabGrowth" onclick="switchMode('growth')">📈 Growth Calculator</button>
+        <button class="tab-btn" id="tabGoal" onclick="switchMode('goal')">🎯 Goal Reverser</button>
+        <button class="tab-btn" id="tabCompare" onclick="switchMode('compare')">⚖️ Side-by-Side Compare</button>
+    </div>
+
+    <div class="container">
+        <!-- INPUT SECTION -->
+        <div class="card">
+            <h2 id="inputCardTitle">Investment Details</h2>
+
+            <div class="field">
+                <label>Currency</label>
+                <select id="currency" onchange="runCalculator()">
+                    <option value="KSh" selected>KSh (Kenyan Shilling)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="TZS">TZS (Tanzanian Shilling)</option>
+                    <option value="UGX">UGX (Ugandan Shilling)</option>
+                </select>
+            </div>
+
+            <!-- GROWTH & COMPARE COMMON INPUTS -->
+            <div id="standardInputs">
+                <div class="field">
+                    <label>Initial Investment</label>
+                    <input type="number" id="principal" value="50000" min="0" oninput="runCalculator()">
+                </div>
+                <div class="field">
+                    <label>Monthly Contribution</label>
+                    <input type="number" id="monthly" value="2000" min="0" oninput="runCalculator()">
+                </div>
+            </div>
+
+            <!-- GOAL CALCULATOR UNIQUE INPUT -->
+            <div id="goalInputs" style="display: none;">
+                <div class="field">
+                    <label>Target Wealth Goal</label>
+                    <input type="number" id="targetGoal" value="5000000" min="0" oninput="runCalculator()">
+                </div>
+            </div>
+
+            <!-- SIDE-BY-SIDE SCENARIO B INPUTS -->
+            <div id="compareInputs" style="display: none;">
+                <div class="comparison-box">
+                    <h3>Scenario B Adjustments</h3>
+                    <div class="field">
+                        <label>Scenario B Interest Rate (%)</label>
+                        <input type="number" id="rateB" value="12" min="0" max="100" step="0.1" oninput="runCalculator()">
+                    </div>
+                    <div class="field">
+                        <label>Scenario B Monthly Contribution</label>
+                        <input type="number" id="monthlyB" value="5000" min="0" oninput="runCalculator()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Annual Interest Rate (%)</label>
+                <input type="number" id="rate" value="8" min="0" max="100" step="0.1" oninput="runCalculator()">
+            </div>
+
+            <div class="field">
+                <label>Investment Period (Years)</label>
+                <input type="number" id="years" value="10" min="0.1" max="100" step="0.5" oninput="runCalculator()">
+            </div>
+
+            <div class="field">
+                <label>Compounding Frequency</label>
+                <select id="frequency" onchange="runCalculator()">
+                    <option value="1">Annually</option>
+                    <option value="2">Semi-annually</option>
+                    <option value="4">Quarterly</option>
+                    <option value="12" selected>Monthly</option>
+                    <option value="365">Daily</option>
+                </select>
+            </div>
+
+            <!-- INFLATION TOGGLE -->
+            <div class="field-checkbox">
+                <input type="checkbox" id="inflationToggle" onchange="runCalculator()">
+                <label for="inflationToggle">Adjust for Inflation (Real Value)</label>
+            </div>
+
+            <div class="field" id="inflationField" style="display: none;">
+                <label>Annual Inflation Rate (%)</label>
+                <input type="number" id="inflationRate" value="5" min="0" max="50" step="0.1" oninput="runCalculator()">
+            </div>
+
+            <button onclick="runCalculator()">
+                Calculate Results
+            </button>
+        </div>
+
+        <!-- RESULTS SECTION -->
+        <div class="card">
+            <h2>Your Results</h2>
+
+            <div class="result" id="primaryResultBox">
+                <h3 id="resultHeading">Future Investment Value</h3>
+                <h1 id="future">KSh 0.00</h1>
+                <p id="goalOutputDesc" style="display:none; font-size: 13px; margin-top: 3px;"></p>
+            </div>
+
+            <!-- SCENARIO B RESULT -->
+            <div class="result scenario-b-result" id="scenarioBBox" style="display: none; background: linear-gradient(135deg, #19a879, #22c55e);">
+                <h3>Scenario B Future Value</h3>
+                <h1 id="futureB">KSh 0.00</h1>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <p id="stat1Label">Total Invested</p>
+                    <h3 id="invested">KSh 0.00</h3>
+                </div>
+                <div class="stat">
+                    <p>Interest Earned</p>
+                    <h3 id="interest">KSh 0.00</h3>
+                </div>
+            </div>
+
+            <h3 style="font-size: 14px; margin-bottom: 5px;">Investment Growth Chart</h3>
+            <canvas id="growthChart" width="600" height="200"></canvas>
+
+            <p class="note">
+                Results are estimates and actual investment returns may vary.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h2>GrowWise.</h2>
+    <p>Make smarter financial decisions.</p>
+    <p>© 2026 GrowWise. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
